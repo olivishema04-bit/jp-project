@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESP32 IoT Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Full MQTT.js library URL -->
+  <script src="https://unpkg.com"></script>
+</head>
+<body>
+  <div class="dashboard">
+    <header>
+      <h1>ESP32 Live IoT Dashboard</h1>
+      <div id="connection-status" class="badge disconnected">Disconnected</div>
+    </header>
+
+    <div class="cards-grid">
+      <!-- Voltage Card -->
+      <div class="card">
+        <h2>Potentiometer Voltage</h2>
+        <div class="voltage-display">
+          <span id="volt">0</span><small>V</small>
+        </div>
+        <div class="progress-bar">
+          <div id="volt-bar" class="progress-fill"></div>
+        </div>
+        <p class="hint">Auto LED trigger at &ge; 40V</p>
+      </div>
+
+      <!-- LED Status & Control Card -->
+      <div class="card">
+        <h2>LED Status &amp; Control</h2>
+        <div class="led-wrapper">
+          <div id="led-bulb" class="led-bulb off"></div>
+          <span id="status">OFF</span>
+        </div>
+
+        <div class="button-group">
+          <button id="btn-auto" class="btn active" onclick="sendCmd('AUTO')">Auto (40V)</button>
+          <button id="btn-on" class="btn" onclick="sendCmd('ON')">Turn ON</button>
+          <button id="btn-off" class="btn" onclick="sendCmd('OFF')">Turn OFF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
